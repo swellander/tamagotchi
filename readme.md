@@ -1,14 +1,14 @@
 ## Planning
 
 1. Configuration/dependencies
-    * _gulp_ - managing development tasks
-    * _browserify_ - allow use of import/require statements
-    * _vinyl-source-stream_ - mediate between Gulp and Browserify
-    * _gulp-concat_ - concatenate files
-    * _gulp-uglify_ - minify code for increased efficiency
-    * _gulp-util_ - utility functions for gulp plugins
-    * _del_ - help keep directories clean during development
-    * _gulp-jshint_ keep me on my toes  
+    * **gulp** - managing development tasks
+    * **browserify** - allow use of import/require statements
+    * **vinyl-source-stream** - mediate between Gulp and Browserify
+    * **gulp-concat** - concatenate files
+    * **gulp-uglify** - minify code for increased efficiency
+    * **gulp-util** - utility functions for gulp plugins
+    * **del** - help keep directories clean during development
+    * **gulp-jshint** keep me on my toes  
 
 2. Specs
     * 
