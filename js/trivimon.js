@@ -25,11 +25,11 @@ export class Trivimon {
     }
 
     startAttacks() {
+
         //Use fat arrow function so that this still refers to trivimon class and not setWellBeingLevel()
         const wellBeingInterval = setInterval(() => {
-            console.log(this.wellBeingLevel);
-            console.log('Timer is running!');
-            if (this.trivimonAtZero()) {
+            if (this.trivimonAtZero() === true) {
+                console.log('CAPTURED!')
                 this.capture();
             } else if (this.position === 'world') {
                 this.wellBeingLevel --;
@@ -47,6 +47,9 @@ export class Trivimon {
     }
 
     cast() {
+        if (this.trivimonAtZero()) {
+            return 'Already at zero!';
+        }
         this.position = 'world';
         this.startAttacks();
     }

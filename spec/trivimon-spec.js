@@ -1,9 +1,10 @@
 import { Trivimon } from './../js/trivimon.js';
 
 describe("Trivimon", function() {
-    const trivimon = new Trivimon('charmander');
+    let trivimon = new Trivimon('charmander');
 
     beforeEach(function() {
+        trivimon = new Trivimon('charmander');
         jasmine.clock().install();
     });
 
@@ -17,6 +18,13 @@ describe("Trivimon", function() {
         expect(trivimon.position).toEqual('pokeball');
         expect(trivimon.evolution).toEqual('charmander');
     });
+
+    it ('should recognize when trivimon wellBeingLevel is at zero', function() {
+        expect(trivimon.trivimonAtZero()).toBe(false);
+        
+        trivimon.wellBeingLevel = 0;
+        expect(trivimon.trivimonAtZero()).toBe(true);
+    })
 
     it ("should change to appropriate position when cast out of pokeball", function() {
         trivimon.cast();
@@ -67,11 +75,17 @@ describe("Trivimon", function() {
 
     //still need to fix this :/
     it ('Should return to pokeball when WBL drops to 0', function() {
-        trivimon.position = 'world';
+        trivimon.cast();
+        expect(trivimon.position).toEqual('world');
+
         trivimon.wellBeingLevel = 0;
-        console.log(trivimon.wellBeingLevel);
-        trivimon.startAttacks();
+        jasmine.clock().tick(8001);
         expect(trivimon.position).toEqual('pokeball');
+    })
+
+    it ('should prevent a trivimon from being cast when WBL is already at 0', function() {
+        trivimon.wellBeingLevel = 0;
+        expect(trivimon.cast()).toEqual('Already at zero!');
     })
 
 })
