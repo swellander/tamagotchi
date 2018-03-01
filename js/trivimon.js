@@ -5,18 +5,19 @@ export class Trivimon {
         }
         this.position = 'pokeball';
         this.evolution = 'charmander';
-        this.wellBeingLevel = 10;
+        this.health = 10;
+        this.potions = 3;
 
     }
 
     trivimonAtZero() {
-        return this.wellBeingLevel < 1;
+        return this.health < 1;
     }
 
     checkEvolution() {
-        if (this.wellBeingLevel < 11) {
+        if (this.health < 11) {
             this.evolution = 'charmander';
-        } else if (this.wellBeingLevel < 21) {
+        } else if (this.health < 21) {
             this.evolution = 'charmeleon';
         } else {
             this.evolution = 'charzard';
@@ -26,13 +27,13 @@ export class Trivimon {
 
     startAttacks() {
 
-        //Use fat arrow function so that this still refers to trivimon class and not setWellBeingLevel()
+        //Use fat arrow function so that this still refers to trivimon class and not sethealth()
         const wellBeingInterval = setInterval(() => {
             if (this.trivimonAtZero() === true) {
                 console.log('CAPTURED!')
                 this.capture();
             } else if (this.position === 'world') {
-                this.wellBeingLevel --;
+                this.health --;
                 this.checkEvolution();
             } else if (this.position === 'pokeball') {
                 clearInterval(wellBeingInterval);
@@ -41,8 +42,8 @@ export class Trivimon {
         }, 8000);
     }
 
-    setWellBeingLevel(startingLevel) {
-        this.wellBeingLevel = startingLevel;
+    sethealth(startingLevel) {
+        this.health = startingLevel;
 
     }
 
@@ -59,10 +60,16 @@ export class Trivimon {
     }
 
     givePotion() {
-        if (this.wellBeingLevel < 26) {
-            this.wellBeingLevel += 5;
+        if (this.potions > 0) {
+            if (this.health < 26) {
+                this.health += 5;
+                this.potions --;
+            } else {
+                this.health = 30;
+            }
         } else {
-            this.wellBeingLevel = 30;
+            console.log('YOU ARE OUT OF POTIONS');
         }
+        
     }
 }

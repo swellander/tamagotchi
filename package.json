@@ -47,5 +47,10 @@
     "karma-jquery": "^0.2.2",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.10.0"
+  },
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "path": "^0.12.7"
   }
 }
