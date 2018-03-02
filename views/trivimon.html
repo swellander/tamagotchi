@@ -3,16 +3,22 @@
     <h1>Trivia Game</h1>
     <hr>
     <br>
-    <div>
-        pokemon here
-    </div>
 
-    <div>
-        potions here
-    </div>
+    <h3>Choose your trivimon!</h3>
+    <select name="type" size='3' id="type-selector">
+        <option value="charmander">Charmander</option>
+        <option value="squirtle">Squirtle</option>
+        <option value="bulbasaur">Bulbasaur</option>
+    </select>
 
-    <div>
-        questions here
-    </div>
+    <p id="health-count"></p>
+    <p id="health-notification"></p>
+    <p id="potions-count"></p>
+    <p id="position-indicator"></p>
+
+    <button id="cast-btn">Cast</button>
+    <button id="capture-btn">Capture</button>
+
+    <div id="trivia-questions"></div>
 
 <% include footer.html %>

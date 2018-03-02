@@ -15,6 +15,6 @@ app.get('/', function(req, res) {
     res.render('trivimon');
 });
 
-app.listen(3000, function() {
-    console.log('Express server started on port 3000');
+app.listen(5000, function() {
+    console.log('Express server started on port 5000');
 })
