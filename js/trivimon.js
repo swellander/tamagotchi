@@ -1,10 +1,16 @@
 export class Trivimon {
     constructor(pokemon) {
         if (pokemon === 'charmander') {
-            this.type = 'fire'
+            this.type = 'fire';
+        } 
+        if (pokemon === 'squirtle') {
+            this.type = 'water';
+        }
+        if (pokemon === 'bulbasaur') {
+            this.type = 'grass';
         }
         this.position = 'pokeball';
-        this.evolution = 'charmander';
+        this.evolution = pokemon;
         this.health = 10;
         this.potions = 3;
 
@@ -30,14 +36,12 @@ export class Trivimon {
         //Use fat arrow function so that this still refers to trivimon class and not sethealth()
         const wellBeingInterval = setInterval(() => {
             if (this.trivimonAtZero() === true) {
-                console.log('CAPTURED!')
                 this.capture();
             } else if (this.position === 'world') {
                 this.health --;
                 this.checkEvolution();
             } else if (this.position === 'pokeball') {
                 clearInterval(wellBeingInterval);
-                console.log('returned safely to pokeball');
             }
         }, 8000);
     }
@@ -68,7 +72,6 @@ export class Trivimon {
                 this.health = 30;
             }
         } else {
-            console.log('YOU ARE OUT OF POTIONS');
         }
         
     }

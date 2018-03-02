@@ -15,13 +15,15 @@ var source = require('vinyl-source-stream');
 var buildProduction = utilities.env.production;
 
 
-gulp.task('serve', ['browser-sync'], function () {
+gulp.task('serve', ['browser-sync', 'babel'], function () {
+
+	gulp.watch(['./js/*.js'], ['babel']);
 });
 
 gulp.task('browser-sync', ['nodemon'], function() {
 	browserSync.init(null, {
 		proxy: "http://localhost:5000",
-        files: ["public/**/*.*"],
+        files: ["public/**/*.*", 'js/*.js'],
         browser: "google chrome",
         port: 7000,
 	});

@@ -4,8 +4,32 @@
 var _trivimon = require('./../js/trivimon.js');
 
 $(document).ready(function () {
+    var castBtn = $('#cast-btn');
+    var captureBtn = $('#capture-btn');
+    var hpCount = $('#health-count');
+    var potionsCount = $('#potions-count');
+    var position = $('#position-indicator');
+
+    var trivimon = new _trivimon.Trivimon('charmander');
     $('#type-selector').click(function () {
-        console.log(this.value);
+        trivimon.type = this.value;
+        hpCount.text('HP: ' + trivimon.health);
+        potionsCount.text('Potions: ' + trivimon.potions);
+        position.html('<img src="https://cdn3.iconfinder.com/data/icons/universal-icons-3/1000/pokeball_A-128.png" alt="">');
+    });
+
+    castBtn.click(function () {
+        trivimon.cast();
+        position.html('<img src="https://img.pokemondb.net/sprites/x-y/normal/squirtle.png" alt="">');
+        castBtn.attr('disabled', true);
+        captureBtn.attr('disabled', false);
+    });
+
+    captureBtn.click(function () {
+        trivimon.capture();
+        captureBtn.attr('disabled', true);
+        castBtn.attr('disabled', false);
+        position.html('<img src="https://cdn3.iconfinder.com/data/icons/universal-icons-3/1000/pokeball_A-128.png" alt="">');
     });
 });
 
@@ -27,8 +51,14 @@ var Trivimon = exports.Trivimon = function () {
         if (pokemon === 'charmander') {
             this.type = 'fire';
         }
+        if (pokemon === 'squirtle') {
+            this.type = 'water';
+        }
+        if (pokemon === 'bulbasaur') {
+            this.type = 'grass';
+        }
         this.position = 'pokeball';
-        this.evolution = 'charmander';
+        this.evolution = pokemon;
         this.health = 10;
         this.potions = 3;
     }
@@ -57,14 +87,12 @@ var Trivimon = exports.Trivimon = function () {
             //Use fat arrow function so that this still refers to trivimon class and not sethealth()
             var wellBeingInterval = setInterval(function () {
                 if (_this.trivimonAtZero() === true) {
-                    console.log('CAPTURED!');
                     _this.capture();
                 } else if (_this.position === 'world') {
                     _this.health--;
                     _this.checkEvolution();
                 } else if (_this.position === 'pokeball') {
                     clearInterval(wellBeingInterval);
-                    console.log('returned safely to pokeball');
                 }
             }, 8000);
         }
@@ -97,9 +125,7 @@ var Trivimon = exports.Trivimon = function () {
                 } else {
                     this.health = 30;
                 }
-            } else {
-                console.log('YOU ARE OUT OF POTIONS');
-            }
+            } else {}
         }
     }]);
 
