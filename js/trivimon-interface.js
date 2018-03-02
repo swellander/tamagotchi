@@ -1,4 +1,4 @@
-var Trivimon = require('./trivimon.js')
+import { Trivimon } from './../js/trivimon.js'
 
 $(document).ready(function() {
     $('#type-selector').click(function() {

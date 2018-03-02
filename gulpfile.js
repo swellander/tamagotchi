@@ -9,6 +9,7 @@ var jshint = require('gulp-jshint');
 var browserSync = require('browser-sync').create();
 var babelify = require('babelify');
 var nodemon = require('gulp-nodemon');
+var source = require('vinyl-source-stream');
 
 //are we in build or production mode?
 var buildProduction = utilities.env.production;
@@ -40,4 +41,14 @@ gulp.task('nodemon', function (cb) {
 			started = true; 
 		} 
 	});
+});
+
+gulp.task('babel', function() {
+	return browserify({ entries: ['./js/trivimon-interface.js'] })
+		.transform(babelify.configure({
+			presets: ["es2015"]
+		}))
+		.bundle()
+		.pipe(source('app.js'))
+		.pipe(gulp.dest('./public/js'));
 });
