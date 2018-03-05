@@ -58,7 +58,7 @@ $(document).ready(function() {
 
     //render potion images
     for (let i = 0; i < trivimon.potions; i ++) {
-        potionsCount.append('<img style="width: 50px" class="potion" src="https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2016/08/Potion-Pokemon-Go.png" alt="">')
+        potionsCount.prepend('<img style="width: 50px" class="potion" src="https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2016/08/Potion-Pokemon-Go.png" alt="">')
     }
     
     $('#type-selector').click(function() {
@@ -76,8 +76,8 @@ $(document).ready(function() {
                 trivimon.capture();
             } else if (trivimon.position === 'world') {
                 trivimon.health --;
-                hpCount.text(trivimon.health);
-                healthNotification.html('<p style="color: red">HP down by 1!</p>');
+                hpCount.text('HP: ' + trivimon.health);
+                healthNotification.html('<p style="color: red">-1</p>');
                 trivimon.checkEvolution();
 
                 setTimeout(function() {
@@ -104,8 +104,7 @@ $(document).ready(function() {
     })
 
 
-
-    $('img.potion').click(function() {
+    $(document).on('click', 'img.potion', function() {
         trivimon.givePotion();
         hpCount.text('HP: ' + trivimon.health);
         healthNotification.html('<p style="color: green">+ potion</p>');
@@ -119,7 +118,15 @@ $(document).ready(function() {
         //trivia question interfcace stuff
     $(document).on('click', '.option', function() {
         if($(this).text() === trivia[triviaQuestionIndex].correct_answer) {
+            //turn answer green
             $(this).addClass('correct');
+            trivimon.potions ++;
+            //add another potion img
+            potionsCount.prepend('<img style="width: 50px" class="potion" src="https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2016/08/Potion-Pokemon-Go.png" alt="">');
+            $('#new-potion-indicator').text('+1')
+            setTimeout(function() {
+                $('#new-potion-indicator').text('');
+            }, 1000)
         }
 
         else {
