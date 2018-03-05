@@ -31,20 +31,20 @@ export class Trivimon {
         }
     }
 
-    startAttacks() {
+    // startAttacks() {
 
-        //Use fat arrow function so that this still refers to trivimon class and not sethealth()
-        const wellBeingInterval = setInterval(() => {
-            if (this.trivimonAtZero() === true) {
-                this.capture();
-            } else if (this.position === 'world') {
-                this.health --;
-                this.checkEvolution();
-            } else if (this.position === 'pokeball') {
-                clearInterval(wellBeingInterval);
-            }
-        }, 8000);
-    }
+    //     //Use fat arrow function so that this still refers to trivimon class and not sethealth()
+    //     const healthInterval = setInterval(() => {
+    //         if (this.trivimonAtZero() === true) {
+    //             this.capture();
+    //         } else if (this.position === 'world') {
+    //             this.health --;
+    //             this.checkEvolution();
+    //         } else if (this.position === 'pokeball') {
+    //             clearInterval(healthInterval);
+    //         }
+    //     }, 8000);
+    // }
 
     sethealth(startingLevel) {
         this.health = startingLevel;
@@ -56,7 +56,7 @@ export class Trivimon {
             return 'Already at zero!';
         }
         this.position = 'world';
-        this.startAttacks();
+        // this.startAttacks()
     }
 
     capture() {

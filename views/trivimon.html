@@ -4,6 +4,15 @@
     <hr>
     <br>
 
+    <div style="float: right; width: 500px" id="trivia-questions">
+        <h2>Question:</h2>
+        <h3 id="question"></h3>
+        <ul id="question-list">
+        </ul>
+        <button id="next">Next</button>
+        <h3 id="question-notification"></h3>
+    </div>
+
     <h3>Choose your trivimon!</h3>
     <select name="type" size='3' id="type-selector">
         <option value="charmander">Charmander</option>
@@ -11,17 +20,21 @@
         <option value="bulbasaur">Bulbasaur</option>
     </select>
 
-
-    <p id="health-count"></p>
-    <p id="health-notification"></p>
-    <p id="potions-count"></p>
-
     
+
+    <h3 id="health-count"></h3>
+    <div id="health-notification"></div>
+    
+
     <div id="position-indicator"></div>
 
     <button id="cast-btn">Cast</button>
     <button id="capture-btn">Capture</button>
 
-    <div id="trivia-questions"></div>
+    <div id="potions-count"></div>
+
+    
+
+    
 
 <% include footer.html %>
