@@ -10,6 +10,12 @@ $(document).ready(function() {
     var trivia;
     let triviaQuestionIndex = 0;
 
+    const nextQuestion = function() {
+        triviaQuestionIndex ++;
+        $('#question-list li').remove();
+        reloadQuestions(trivia[triviaQuestionIndex]);
+    }
+
     const reloadQuestions = function(trivia) {
         //randomize option order
         var nums = [0, 1, 2, 3],
@@ -117,6 +123,7 @@ $(document).ready(function() {
 
         //trivia question interfcace stuff
     $(document).on('click', '.option', function() {
+        //if user clicks on correct answer:
         if($(this).text() === trivia[triviaQuestionIndex].correct_answer) {
             //turn answer green
             $(this).addClass('correct');
@@ -130,15 +137,15 @@ $(document).ready(function() {
         }
 
         else {
-            console.log('WRONG');
+            $(this).addClass('red');
+            setTimeout(function() {
+                nextQuestion();
+            }, 500)
         }
     });
 
     $('#next').click(function() {
-        triviaQuestionIndex ++;
-        $('#question-list li').remove();
-
-        reloadQuestions(trivia[triviaQuestionIndex]);
+        nextQuestion();
     })
 
 
